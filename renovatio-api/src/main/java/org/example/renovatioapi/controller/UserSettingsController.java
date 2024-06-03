@@ -1,5 +1,7 @@
 package org.example.renovatioapi.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,12 +20,13 @@ public class UserSettingsController {
     @Autowired
     private UserSettingsService service;
 
-    @GetMapping
-    public UserSettings getUserSettings(HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping()
+    public ResponseEntity<UserSettings> getUserSettings(HttpServletRequest request, HttpServletResponse response) {
         String userUuid = getUserUuidFromCookies(request, response);
 
         Optional<UserSettings> settings = service.getUserSettingsByUuid(userUuid);
-        return settings.orElse(new UserSettings());
+        return settings.map(ResponseEntity::ok)
+                       .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @PostMapping
