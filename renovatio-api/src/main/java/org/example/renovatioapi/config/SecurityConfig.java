@@ -30,7 +30,8 @@ public class SecurityConfig {
                 .formLogin(withDefaults())
                 .logout(logout ->
                         logout.permitAll()
-                );
+                )
+                .httpBasic();
         return http.build();
     }
 
