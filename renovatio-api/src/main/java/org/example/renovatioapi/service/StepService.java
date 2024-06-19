@@ -7,4 +7,6 @@ public interface StepService {
     List<Step> getAll();
 
     Step save(Step step);
+
+    void delete(Long id);
 }

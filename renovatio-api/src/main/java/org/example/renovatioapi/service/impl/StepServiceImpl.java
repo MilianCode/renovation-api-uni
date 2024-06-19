@@ -23,4 +23,9 @@ public class StepServiceImpl implements StepService {
     public Step save(Step step) {
         return stepRepository.save(step);
     }
+
+    @Override
+    public void delete(Long id) {
+        stepRepository.delete(stepRepository.findById(id).get());
+    }
 }
