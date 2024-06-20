@@ -23,4 +23,14 @@ public class StepController {
         return service.save(step);
     }
 
+    @PostMapping("/delete")
+    public void delete(@RequestParam Long id) {
+        service.delete(id);
+    }
+
+    @PostMapping("/update")
+    public Step update(@RequestBody Step step) {
+        return service.update(step);
+    }
+
 }
