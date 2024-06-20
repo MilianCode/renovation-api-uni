@@ -50,6 +50,11 @@ public class StepServiceImpl implements StepService {
         return stepRepository.save(step1);
     }
 
+    @Override
+    public Step getById(Long id) {
+        return null;
+    }
+
     private void resetAutoIncrement() {
         String sql = "ALTER TABLE step AUTO_INCREMENT = 1";
         entityManager.createNativeQuery(sql).executeUpdate();

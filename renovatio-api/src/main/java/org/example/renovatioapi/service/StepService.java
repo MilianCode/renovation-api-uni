@@ -11,4 +11,6 @@ public interface StepService {
     void delete(Long id);
 
     Step update(Step step);
+
+    Step getById(Long id);
 }

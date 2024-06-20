@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .cors().and().csrf().disable()
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/panel/**").hasRole("ADMIN")
+                                .requestMatchers("/admin/panel/**").hasRole("ADMIN")
                                 .anyRequest().permitAll()
                 )
                 .formLogin(withDefaults())

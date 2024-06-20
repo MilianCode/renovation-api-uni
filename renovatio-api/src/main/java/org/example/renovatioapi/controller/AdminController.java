@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/panel")
-public class StepController {
+@RequestMapping("/admin/panel")
+public class AdminController {
 
     @Autowired
     private StepService service;
@@ -16,6 +16,21 @@ public class StepController {
     @GetMapping
     public List<Step> getAll() {
         return service.getAll();
+    }
+
+    @PostMapping("/save")
+    public Step save(@RequestBody Step step) {
+        return service.save(step);
+    }
+
+    @PostMapping("/delete")
+    public void delete(@RequestParam Long id) {
+        service.delete(id);
+    }
+
+    @PostMapping("/update")
+    public Step update(@RequestBody Step step) {
+        return service.update(step);
     }
 
 }
