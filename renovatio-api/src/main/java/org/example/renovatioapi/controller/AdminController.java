@@ -23,9 +23,9 @@ public class AdminController {
         return service.save(step);
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestParam Long id) {
-        service.delete(id);
+    @PostMapping("/delete/{id}")
+    public Long delete(@PathVariable(value = "id") Long id) {
+        return service.delete(id);
     }
 
     @PostMapping("/update")

@@ -32,7 +32,7 @@ public class StepServiceImpl implements StepService {
 
     @Transactional
     @Override
-    public void delete(Long id) {
+    public Long delete(Long id) {
         stepRepository.deleteById(id);
         List<Step> steps = stepRepository.findAllByOrderByIdAsc();
         for (int i = 0; i < steps.size(); i++) {
@@ -40,6 +40,7 @@ public class StepServiceImpl implements StepService {
         }
         stepRepository.saveAll(steps);
         resetAutoIncrement();
+        return id;
     }
 
     @Override

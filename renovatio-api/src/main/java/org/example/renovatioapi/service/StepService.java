@@ -8,7 +8,7 @@ public interface StepService {
 
     Step save(Step step);
 
-    void delete(Long id);
+    Long delete(Long id);
 
     Step update(Step step);
 
