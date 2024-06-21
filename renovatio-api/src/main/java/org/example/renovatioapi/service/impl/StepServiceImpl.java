@@ -17,9 +17,6 @@ public class StepServiceImpl implements StepService {
     @Autowired
     private StepRepository stepRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Override
     public List<Step> getAll() {
         return stepRepository.findAll();
@@ -34,12 +31,6 @@ public class StepServiceImpl implements StepService {
     @Override
     public Long delete(Long id) {
         stepRepository.deleteById(id);
-        List<Step> steps = stepRepository.findAllByOrderByIdAsc();
-        for (int i = 0; i < steps.size(); i++) {
-            steps.get(i).setId((long) (i + 1));
-        }
-        stepRepository.saveAll(steps);
-        resetAutoIncrement();
         return id;
     }
 
@@ -54,10 +45,5 @@ public class StepServiceImpl implements StepService {
     @Override
     public Step getById(Long id) {
         return null;
-    }
-
-    private void resetAutoIncrement() {
-        String sql = "ALTER TABLE step AUTO_INCREMENT = 1";
-        entityManager.createNativeQuery(sql).executeUpdate();
     }
 }
